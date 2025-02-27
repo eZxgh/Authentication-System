@@ -47,7 +47,7 @@ const server1 = http.createServer(async (req,res) => {
                     try 
                     {
                         const result = await registerUser(nickname,password);
-                        if(result.succes)
+                        if(result.success)
                         {
                             res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
                             res.end(JSON.stringify({ message: "Registration successful" }));
@@ -68,7 +68,7 @@ const server1 = http.createServer(async (req,res) => {
                     try 
                     {
                         const result = await checkLogin(nickname,password);
-                        if(result.succes)
+                        if(result.success)
                         {
                             res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
                             res.end(JSON.stringify({ message: "Login successful" }));

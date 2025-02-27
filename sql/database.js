@@ -24,18 +24,10 @@ const createTableQuery = `CREATE TABLE IF NOT EXISTS ${tableName}
     haslo VARCHAR(255)
 )`;
 
-const dbConnection = mysql.createConnection({ 
-    host: host, 
-    port: port, 
-    user: user, 
-    password: password,
-});
-
-//
 async function initializeDatabase() {
     try 
     {
-        const connection = await dbConnection;
+        const connection = await mysql.createConnection({ host, port, user, password });
         console.log("Connection to the MySQL server has been established.");
 
         connection.query(createDatabaseQuery);
@@ -47,7 +39,8 @@ async function initializeDatabase() {
         connection.query(createTableQuery);
         console.log(`Table ${tableName} has been created (or already exists)`);
     } catch (err) {
-        console.error(`Error in initializeDatabase(): ${err}`);
+        console.log("An error occurred in initializeDatabase()");
+        console.error(err);
     } 
 }
 
@@ -55,11 +48,11 @@ async function checkLogin(username,password)
 {   
     try
     {
-        const connection = await dbConnection;
+        const connection = await mysql.createConnection({ host, port, user, password });
 
         if(!username || !password)
         {
-            return { succes: false, error: "You must provide username and password." };
+            return { success: false, error: "You must provide username and password." };
         }
         
         const selectQuery = `SELECT * FROM ?? WHERE login = ?`;
@@ -68,7 +61,7 @@ async function checkLogin(username,password)
 
         if(rows.length === 0)
         {
-            return { succes: false, error: `Wrong login data for: ${username}` };
+            return { success: false, error: `Wrong login data for: ${username}` };
         }
 
         const storedPassword = rows[0].haslo;
@@ -78,18 +71,19 @@ async function checkLogin(username,password)
         if (isMatch) 
         {
             console.log(`User ${username} logged-in succesfuly.`);
-            return { succes: true };
+            return { success: true };
         } 
         else 
         {
             console.log(`Wrong login data for user ${username}.`);
-            return { succes: false };
+            return { success: false };
         }
     }
     catch(err)
     {
-        console.error(`Error in checkLogin(): ${err}`);
-        return { succes: false };
+        console.log("An error occurred in checkLogin()");
+        console.error(err);
+        return { success: false };
     }
 };   
 
@@ -97,12 +91,12 @@ async function registerUser(username,password)
 {
     if(!username || !password)
     {
-        return { succes: false, error: "You must provide username and password."};
+        return { success: false, error: "You must provide username and password."};
     }
     
     try
     {
-        const connection = await dbConnection;
+        const connection = await mysql.createConnection({ host, port, user, password });
         const SALT_ROUNDS = 10;
 
         const checkUser = `SELECT * FROM ?? WHERE login = ?`;
@@ -120,12 +114,13 @@ async function registerUser(username,password)
 
         const result = await connection.query(formattedQuery);
         console.log(`New user has been added: Login = ${username}`);
-        return { succes: true }
+        return { success: true }
     }
     catch(err)
     {
-        console.error(`Error in registerUser(): ${err}`);
-        return { succes:false };
+        console.log("An error occurred in registerUser()");
+        console.error(err);
+        return { success: false };
     }
 };
 
