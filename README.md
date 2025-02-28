@@ -53,16 +53,13 @@ node server.js
 http://localhost:3003
 ```
 
-<h2>🍰 Contribution Guidelines:</h2>
+<h2>Contribution Guidelines:</h2>
 
 Register a New User: Access the /register.html page input your desired username and password to register. To login acces the /login.html page enter your credentials to log in. After successful login you will be redirected to a success page.
 
   
   
 <h2>Built with</h2>
-
-Technologies used in the project:
-
 *   Node.js: Runtime for building the server.
 *   MySQL: Database for storing user information.
 *   bcrypt: Library for securely hashing passwords.
