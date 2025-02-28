@@ -59,7 +59,9 @@ Register a New User: Access the /register.html page input your desired username 
 
   
   
-<h2>Built with</h2>
+<h2>Technologies used in the project:</h2>
+Built with:
+
 *   Node.js: Runtime for building the server.
 *   MySQL: Database for storing user information.
 *   bcrypt: Library for securely hashing passwords.
