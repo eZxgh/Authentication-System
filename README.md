@@ -1,6 +1,6 @@
-<h1 align="center" id="title">Simple Node.js & MySQL Authentication System</h1>
+<h1 align="center" id="title">Simple Node.js, express & MySQL Authentication System</h1>
 
-<p id="description">This is a basic user authentication system built with Node.js MySQL and bcrypt for password hashing. It allows users to register and log in securely.</p>
+<p id="description">This is a basic user authentication system built with Node.js MySQL, express and bcrypt for password hashing. It allows users to register and log in securely.</p>
 
   
   
@@ -38,19 +38,19 @@ cd project-name
 <p>5. Install the required dependencies:</p>
 
 ```
-npm install mysql2 bcrypt
+npm install 
 ```
 
 <p>6. Start the server:</p>
 
 ```
-node server.js
+node app.js
 ```
 
 <p>7. Open your browser and visit:</p>
 
 ```
-http://localhost:3003
+http://localhost:3006
 ```
 
 <h2>Contribution Guidelines:</h2>
